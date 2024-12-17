@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-// TODO: Define an interface for the Coordinates object
+//interface for the Coordinates object
 interface Coordinates {
   lat: number;
   long: number;
@@ -10,7 +10,7 @@ interface Coordinates {
 // TODO: Define a class for the Weather object
 import Weather from './weatherClass.js';
 
-// TODO: Complete the WeatherService class
+//WeatherService class
 class WeatherService {
   // Define the baseURL, API key, and city name properties
   protected baseURL?: string;
