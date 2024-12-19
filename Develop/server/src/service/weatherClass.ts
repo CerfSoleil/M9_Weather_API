@@ -1,26 +1,26 @@
 class Weather {
     city: string;
     date: string;
-    icon: string;
+    temp: string;
     iconDescription: string;
-    temp: number;
+    description: number;
     windSpeed: number;
     humidity: number;
 
     constructor (
         city: string,
         date: string,
-        icon: string,
+        temp: string,
         iconDescription: string,
-        temp: number,
+        description: number,
         windSpeed: number,
         humidity: number,
     ) {
         this.city = city;
         this.date = date;
-        this.icon = icon;
-        this.iconDescription = iconDescription;
         this.temp = temp;
+        this.iconDescription = iconDescription;
+        this.description = description;
         this.windSpeed = windSpeed;
         this.humidity = humidity;
     }
