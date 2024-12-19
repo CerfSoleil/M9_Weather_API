@@ -70,8 +70,6 @@ class WeatherService {
     try {
       const query = this.buildWeatherQuery(coordinates);
       const response = await fetch(query);
-      //console.log(response);
-      // console.log(data);
       if (!response.ok) {
         throw new Error(`Error fetching weather data: ${response.statusText}`);
       }
@@ -86,22 +84,19 @@ class WeatherService {
     const { temp, humidity } = response.main;
     const { speed: windSpeed } = response.wind;
     const { description, icon } = response.weather[0];
-    console.log(`Temp ${temp}, Humidity ${humidity}, description ${description}, icon ${icon}, windspeed ${windSpeed}`)
+    console.log(`from parseCurrentWeather | Temp ${temp}, Humidity ${humidity}, description ${description}, icon ${icon}, windspeed ${windSpeed}`)
     return new Weather(this.cityName, response.dt_txt, temp, icon, description, windSpeed, humidity)
   }
   //buildForecastArray method
   private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
     let filteredDays = weatherData.filter((day: any) => day.dt_txt.includes('12:00:00'));
 
-    //This array is fucked... day.wind = humidity + temp = weather
-    //Actual temperature reads as temp, but is lost in transferring to HTML
-    //Somewhere, temperature is being set to icon and weather is getting set to temp...
-    //I have no clue what's setting the HTML either.
+    //Fixing misplaced variables happens in weatherClass.ts
     const forecast: Weather[] = filteredDays.map((day: any) => {
       const { speed: windSpeed, temp } = day.main;
       const { humidity } = day.wind;
       const { description, icon } = day.weather[0];
-      console.log(`From buildForecastArray | ${this.cityName}, ${day.dt_txt}, ${icon}, ${description}, ${temp}, ${humidity}, ${windSpeed}`);
+      //console.log(`From buildForecastArray | ${this.cityName}, ${day.dt_txt}, ${icon}, ${description}, ${temp}, ${humidity}, ${windSpeed}`);
       return new Weather(this.cityName, day.dt_txt, icon, description, temp, humidity, windSpeed);
     });
     return [currentWeather, forecast];
@@ -115,7 +110,6 @@ class WeatherService {
       this.cityName = city;
       const coordinates = await this.fetchAndDestructureLocationData();
       const weatherData: any = await this.fetchWeatherData(coordinates);
-      //console.log(weatherData);
       const currentWeather = await this.parseCurrentWeather(weatherData.list[0]);
       const forecast = await this.buildForecastArray(currentWeather, weatherData.list);
 
