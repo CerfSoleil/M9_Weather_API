@@ -24,23 +24,18 @@
 
   ## Installation
 
-    ### Prerequisites
-    Node.js and npm installed
+  ### Prerequisites
+  Node.js and npm installed
 
-    ### Steps to Recreate
-    1. Clone this repository
-    2. Install dependencies in your project folder with `npm install`
-    3. Start the application using `npm start: dev`
+  ### Steps to Recreate
+  1. Clone this repository
+  2. Install dependencies in your project folder with `npm install`
+  3. Start the application using `npm start: dev`
 
 
   ## Usage
-    * Using either the deployed link [here | tba](example.com) or running through your own installation, you can search your city in the search box and recieve the current weather for that city.
-    * A history function is available for the quick check of cities checked in the past.
-
-  
-
-https://github.com/user-attachments/assets/6d0db1ab-a689-4d39-b4e2-f738852639cd
-
+  * Using either the deployed link [here | tba](example.com) or running through your own installation, you can search your city in the search box and recieve the current weather for that city.
+  * A history function is available for the quick check of cities checked in the past.
 
 
   ## Documentation
