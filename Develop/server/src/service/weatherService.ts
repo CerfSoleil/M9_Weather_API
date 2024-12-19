@@ -38,13 +38,12 @@ class WeatherService {
       throw new Error('Failed to get location data.');
     }
   }
-  // Turns lat and lon gotten from __ into locationData
+  // Turns lat and lon into locationData
   private destructureLocationData(locationData: Coordinates): Coordinates {
     const { lat, lon } = locationData;
     return { lat, lon };
   }
     // buildGeocodeQuery method
-    //something about the api key is erroring...
   private buildGeocodeQuery(): string {
     if (!this.cityName || !this.APIKey) {
       throw new Error('City or API key is missing.');
@@ -109,9 +108,9 @@ class WeatherService {
     try {
       this.cityName = city;
       const coordinates = await this.fetchAndDestructureLocationData();
-      const weatherData: any = await this.fetchWeatherData(coordinates);
-      const currentWeather = await this.parseCurrentWeather(weatherData.list[0]);
-      const forecast = await this.buildForecastArray(currentWeather, weatherData.list);
+      const weatherData = await this.fetchWeatherData(coordinates);
+      const currentWeather = this.parseCurrentWeather(weatherData.list[0]);
+      const forecast = this.buildForecastArray(currentWeather, weatherData.list);
 
       if (!currentWeather || !forecast) {
         throw new Error('Failed to parse weather data.');
