@@ -3,27 +3,28 @@ class Weather {
     date: string;
     icon: string;
     iconDescription: string;
-    tempF: number;
-    humidity: number;
+    temp: number;
     windSpeed: number;
+    humidity: number;
 
     constructor (
         city: string,
         date: string,
         icon: string,
         iconDescription: string,
-        tempF: number,
-        humidity: number,
+        temp: number,
         windSpeed: number,
+        humidity: number,
     ) {
         this.city = city;
         this.date = date;
         this.icon = icon;
         this.iconDescription = iconDescription;
-        this.tempF = tempF;
-        this.humidity = humidity;
+        this.temp = temp;
         this.windSpeed = windSpeed;
+        this.humidity = humidity;
     }
 }
 
+//This is currently used in weatherService
 export default Weather;

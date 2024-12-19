@@ -21,6 +21,9 @@ const weatherIcon: HTMLImageElement = document.getElementById(
 const tempEl: HTMLParagraphElement = document.getElementById(
   'temp'
 ) as HTMLParagraphElement;
+  const descriptionEl: HTMLParagraphElement = document.getElementById(
+    'description'
+) as HTMLParagraphElement;
 const windEl: HTMLParagraphElement = document.getElementById(
   'wind'
 ) as HTMLParagraphElement;
@@ -77,9 +80,9 @@ Render Functions
 */
 
 const renderCurrentWeather = (currentWeather: any): void => {
-  const { city, date, icon, iconDescription, tempF, windSpeed, humidity } =
+  const { city, date, icon, iconDescription, temp, description, windSpeed, humidity } =
     currentWeather;
-
+console.log(`This log is from main.ts for renderCurrentWeather | Temp ${temp}, Description ${description}`);
   // convert the following to typescript
   heading.textContent = `${city} (${date})`;
   weatherIcon.setAttribute(
@@ -89,13 +92,14 @@ const renderCurrentWeather = (currentWeather: any): void => {
   weatherIcon.setAttribute('alt', iconDescription);
   weatherIcon.setAttribute('class', 'weather-img');
   heading.append(weatherIcon);
-  tempEl.textContent = `Temp: ${tempF}°F`;
+  tempEl.textContent = `Temp: ${temp}°F`;
+  descriptionEl.textContent = `Weather: ${description}`;
   windEl.textContent = `Wind: ${windSpeed} MPH`;
   humidityEl.textContent = `Humidity: ${humidity} %`;
 
   if (todayContainer) {
     todayContainer.innerHTML = '';
-    todayContainer.append(heading, tempEl, windEl, humidityEl);
+    todayContainer.append(heading, tempEl, descriptionEl, windEl, humidityEl);
   }
 };
 
@@ -118,9 +122,9 @@ const renderForecast = (forecast: any): void => {
 };
 
 const renderForecastCard = (forecast: any) => {
-  const { date, icon, iconDescription, tempF, windSpeed, humidity } = forecast;
+  const { date, icon, iconDescription, description, temp, windSpeed, humidity } = forecast;
 
-  const { col, cardTitle, weatherIcon, tempEl, windEl, humidityEl } =
+  const { col, cardTitle, weatherIcon, descriptionEl, tempEl, windEl, humidityEl } =
     createForecastCard();
 
   // Add content to elements
@@ -130,9 +134,11 @@ const renderForecastCard = (forecast: any) => {
     `https://openweathermap.org/img/w/${icon}.png`
   );
   weatherIcon.setAttribute('alt', iconDescription);
-  tempEl.textContent = `Temp: ${tempF} °F`;
+  tempEl.textContent = `Temp: ${temp} °F`;
+  descriptionEl.textContent = `Weather: ${description}`;
   windEl.textContent = `Wind: ${windSpeed} MPH`;
   humidityEl.textContent = `Humidity: ${humidity} %`;
+  //console.log(`This log is from main.ts for renderForecastCard | Temp ${temp}, Description ${description}`);
 
   if (forecastContainer) {
     forecastContainer.append(col);
@@ -171,12 +177,13 @@ const createForecastCard = () => {
   const cardTitle = document.createElement('h5');
   const weatherIcon = document.createElement('img');
   const tempEl = document.createElement('p');
+  const descriptionEl = document.createElement('p');
   const windEl = document.createElement('p');
   const humidityEl = document.createElement('p');
 
   col.append(card);
   card.append(cardBody);
-  cardBody.append(cardTitle, weatherIcon, tempEl, windEl, humidityEl);
+  cardBody.append(cardTitle, weatherIcon, tempEl, descriptionEl, windEl, humidityEl);
 
   col.classList.add('col-auto');
   card.classList.add(
@@ -189,14 +196,17 @@ const createForecastCard = () => {
   cardBody.classList.add('card-body', 'p-2');
   cardTitle.classList.add('card-title');
   tempEl.classList.add('card-text');
+  descriptionEl.classList.add('card-text');
   windEl.classList.add('card-text');
   humidityEl.classList.add('card-text');
+  //console.log(`This log is from main.ts for createForecastCard | Temp ${tempEl}, Description ${descriptionEl}`);
 
   return {
     col,
     cardTitle,
     weatherIcon,
     tempEl,
+    descriptionEl,
     windEl,
     humidityEl,
   };
