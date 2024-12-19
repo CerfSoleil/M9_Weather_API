@@ -16,7 +16,7 @@ class City {
 //searchHistory.json read
 class HistoryService {
   private async read() {
-    const filePath = './db/searchHistory.json';
+    const filePath = 'db/searchHistory.json';
     try {
       const data = await fs.readFile(filePath, 'utf8');
         return JSON.parse(data);
