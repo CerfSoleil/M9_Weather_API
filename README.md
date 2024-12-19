@@ -29,7 +29,7 @@
 
   ### Steps to Recreate
   1. Clone this repository
-  2. Install dependencies in your project folder with `npm install`
+  2. Install dependencies in the develop folder with `npm install`
   3. Start the application using `npm start: dev`
 
 
